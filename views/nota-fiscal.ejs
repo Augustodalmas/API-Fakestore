@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nota Fiscal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .Header,
+        .Address {
+            width: 98%;
+            height: auto;
+            display: flex;
+            flex-wrap: wrap;
+            border: 1px solid black;
+            border-radius: 15px;
+            padding: 10px;
+            margin: 5px 0;
+        }
+
+        .Header td {
+            width: 50%;
+            font-size: 8px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        li {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+
+        img {
+            width: 35px;
+        }
+
+        table {
+            width: 100%;
+            border-spacing: 0;
+        }
+
+        tbody {
+            width: 50%;
+        }
+
+        .products tr {
+            border: 1px solid gray;
+        }
+
+        .tableBody td {
+            text-align: center;
+        }
+
+        .products {
+            margin: 5px 0;
+            width: 98%;
+            border: 1px solid black;
+            border-radius: 15px;
+            padding: 10px;
+        }
+
+        .infos {
+            margin: 5px 0;
+            width: 98%;
+            border: 1px solid black;
+            border-radius: 15px;
+            padding: 10px;
+        }
+
+        .price {
+            color: rgb(0, 172, 0);
+        }
+
+        .Total {
+            font-size: 18px;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .footer {
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+
+        .footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .title {
+            width: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Muito obrigado por adquirir os produtos da Fakestore!</h2>
+        <section class="Header">
+            <h2>Nota Fiscal de código <%= cart._id %>
+            </h2>
+            <h3>Informações pessoais.</h3>
+            <table class="tableHead">
+                <tbody>
+                    <tr>
+                        <td>
+                            <li>
+                                <span><strong>Usuário:</strong>
+                                    <%= user.username %>
+                                </span>
+                            </li>
+                            <li>
+                                <span><strong>Nome completo</strong>
+                                    <%= user.name %>
+                                </span>
+                            </li>
+                        </td>
+                        <td>
+                            <li>
+                                <span><strong>E-mail:</strong>
+                                    <%= user.email %>
+                                </span>
+                            </li>
+                            <li>
+                                <span><strong>Telefone</strong>
+                                    <%= user.telefone %>
+                                </span>
+                            </li>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="Address">
+            <h3>Endereço.</h3>
+            <table class="tableAddress">
+                <tbody>
+                    <tr>
+                        <td>
+                            <li>
+                                <span><strong>Bairro:</strong>
+                                    <%= address.Bairro %>
+                                </span>
+                            </li>
+                            <li>
+                                <span><strong>Estado:</strong>
+                                    <%= address.Estado %>
+                                </span>
+                            </li>
+                        </td>
+                        <td>
+                            <li>
+                                <span><strong>CEP:</strong>
+                                    <%= address.CEP %>
+                                </span>
+                            </li>
+                            <li>
+                                <span><strong>Complemento:</strong>
+                                    <%= address.Complemento %>
+                                </span>
+                        </td>
+                        <td>
+                            <li>
+                                <span><strong>Número:</strong>
+                                    <%= address.Numero %>
+                                </span>
+                            </li>
+                            <li>
+                                <span><strong>UF:</strong>
+                                    <%= address.UF %>
+                                </span>
+                            </li>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+        </section>
+
+        <section class="products">
+            <h3>Produtos:</h3>
+            <table class="tableBody">
+                <thead>
+                    <th></th>
+                    <th>Nome</th>
+                    <th>Quantidade</th>
+                    <th>Valor</th>
+                </thead>
+                <tbody>
+                    <% products.forEach(product=> { %>
+                        <tr>
+                            <td><img src=<%=product.imagem %> alt="foto"></td>
+                            <td class="title">
+                                <%= product.title %>
+                            </td>
+                            <td>
+                                <%= product.count %>
+                            </td>
+                            <td class="price">
+                                R$ <%= product.price %>
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="infos">
+            <p><strong>Data de fechamento do carrinho:</strong>
+                <%= date %>
+            </p>
+            <p class="Total"><strong>Total do carrinho:</strong>
+                R$ <%= total %>
+            </p>
+        </section>
+
+        <footer class="footer">
+            <p>Obrigado por comprar conosco!</p>
+        </footer>
+    </div>
+</body>
+
+</html>

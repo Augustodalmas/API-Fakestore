@@ -1,0 +1,26 @@
+{
+    "product": {
+      "title": "title",
+      "price": "price",
+      "description": "description"
+    },
+    "category": {
+      "name": "name"
+    },
+    "error": {
+      "server": "Erro no servidor"
+    },
+    "msg": {
+        "id": "ID encontrado Inválido",
+        "notFound": "Produto não encontrado!",
+        "notFoundCategory": "Categoria não encontrado!",
+        "img": "Imagem não enviada",
+        "create": "Produto criado com sucesso",
+        "erroCreate": "Erro ao criar o produto:",
+        "delete": "Produto deletado com sucesso!",
+        "erroDelete": "Erro ao deletar o produto!",
+        "update": "Produto atualizado com sucesso!",
+        "erroUpdate": "Erro ao atualizar o produto"
+    }
+  }
+  

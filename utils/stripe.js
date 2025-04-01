@@ -1,0 +1,1 @@
+const stripe = require('stripe')('sk_test_51Q6bO9RsMpUUe6PW59pPbeasiX9lY3vP4G0Pve4HmEf5eRkbcveu2WaHQ3Iq1gb2NRFSYjNqLLX2ywfd7adjUUGy00SiGr8osR')

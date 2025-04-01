@@ -1,0 +1,26 @@
+{
+    "product": {
+      "title": "{{title}}",
+      "price": "{{price}}",
+      "description": "{{description}}"
+    },
+    "category": {
+      "name": "{{name}}"
+    },
+    "error": {
+      "server": "Server error"
+    },
+    "msg": {
+        "id": "Invalid ID found",
+        "notFound": "Product not found!",
+        "notFoundCategory": "Category not found!",
+        "img": "Image not sent",
+        "create": "Product created successfully",
+        "erroCreate": "Error creating product:",
+        "delete": "Product deleted successfully!",
+        "erroDelete": "Error deleting product!",
+        "update": "Product updated successfully!",
+        "erroUpdate": "Error updating product"
+    }
+  }
+  
