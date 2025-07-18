@@ -127,11 +127,18 @@ const cartController = {
             } else {
 
                 const value = await Product.findOne({ _id: req.body.product })
-                cart.product.push(req.body.product);
-                if (cart.totalprice && value.price) {
-                    cart.totalprice += value.price;
+                if (req.body.quantity > 1) {
+                    for (let i = 0; i < req.body.quantity; i++) {
+                        cart.product.push(req.body.product);
+                        if (cart.totalprice && value.price) {
+                            cart.totalprice += value.price;
+                        } else {
+                            cart.totalprice = value.price;
+                        }
+                    }
                 } else {
-                    cart.totalprice = value.price;
+                    cart.product.push(req.body.product);
+                    cart.totalprice += value.price;
                 }
                 await cart.save();
             }

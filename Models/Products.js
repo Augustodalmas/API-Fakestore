@@ -51,9 +51,9 @@ const productSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Category',
     },
-    imagem: {
+    imagem: [{
         type: String,
-    },
+    }],
     rating: ratingSchema,
     id_stripe: { type: String },
     id_stripe_prod: { type: String }

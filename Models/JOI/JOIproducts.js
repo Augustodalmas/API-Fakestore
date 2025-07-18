@@ -12,7 +12,7 @@ const validationUser = Joi.object({
         description_en: Joi.string().min(10).max(600).required(),
         description_es: Joi.string().min(10).max(600).required(),
     },
-    imagem: Joi.string(),
+    imagem: Joi.array(),
     category: Joi.required(),
     rating: {
         rate: Joi.number(),

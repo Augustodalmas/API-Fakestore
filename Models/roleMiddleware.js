@@ -30,10 +30,6 @@ const controllerRoles = {
             } else {
                 const lang = req.cookies.lang || "en-US";
                 const role = roles[0];
-                console.log(roles);
-                console.log(req.session);
-
-
                 return res.status(403).json({ msg: getErrorMessage(lang, role), status: 403 });
             }
         };

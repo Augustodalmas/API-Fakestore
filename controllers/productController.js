@@ -70,7 +70,7 @@ const productsController = {
             if (req.query.sort) {
                 if (req.query.sort === "asc") {
                     const ascProduct = restructured.sort((a, b) => a.rating.rate - b.rating.rate)
-                    let pageCount = Math.ceil(ascProduct.length / 10)
+                    let pageCount = Math.ceil(ascProduct.length / 9)
                     let page = parseInt(req.query.p)
                     if (!page) { page = 1 }
                     if (page > pageCount) {
@@ -79,11 +79,11 @@ const productsController = {
                     res.json({
                         'page': page,
                         'pageCount': pageCount,
-                        'products': ascProduct.slice(page * 10 - 10, page * 10)
+                        'products': ascProduct.slice(page * 9 - 9, page * 9)
                     });
                 } else if (req.query.sort === "desc") {
                     const descProduct = restructured.sort((a, b) => b.rating.rate - a.rating.rate)
-                    let pageCount = Math.ceil(descProduct.length / 10)
+                    let pageCount = Math.ceil(descProduct.length / 9)
                     let page = parseInt(req.query.p)
                     if (!page) { page = 1 }
                     if (page > pageCount) {
@@ -92,10 +92,10 @@ const productsController = {
                     res.json({
                         'page': page,
                         'pageCount': pageCount,
-                        'products': descProduct.slice(page * 10 - 10, page * 10)
+                        'products': descProduct.slice(page * 9 - 9, page * 9)
                     });
                 } else {
-                    let pageCount = Math.ceil(restructured.length / 10)
+                    let pageCount = Math.ceil(restructured.length / 9)
                     let page = parseInt(req.query.p)
                     if (!page) { page = 1 }
                     if (page > pageCount) {
@@ -104,11 +104,11 @@ const productsController = {
                     res.json({
                         'page': page,
                         'pageCount': pageCount,
-                        'products': restructured.slice(page * 10 - 10, page * 10)
+                        'products': restructured.slice(page * 9 - 9, page * 9)
                     });
                 }
             } else {
-                let pageCount = Math.ceil(restructured.length / 10)
+                let pageCount = Math.ceil(restructured.length / 9)
                 let page = parseInt(req.query.p)
                 if (!page) { page = 1 }
                 if (page > pageCount) {
@@ -117,7 +117,7 @@ const productsController = {
                 res.json({
                     'page': page,
                     'pageCount': pageCount,
-                    'products': restructured.slice(page * 10 - 10, page * 10)
+                    'products': restructured.slice(page * 9 - 9, page * 9)
                 });
             }
         } catch (error) {
@@ -232,6 +232,7 @@ const productsController = {
                 }
                 //Faz a pesquisa dentro de produtos, baseando-se pelo ID da categoria
                 const products = await Product.find({ category: categoryModel._id });
+
                 //Reestruturação dos dados para ficar conforme o desejado
                 restructured = products.map(product => ({
                     id: product._id,
@@ -305,7 +306,7 @@ const productsController = {
         });
 
         try {
-            if (req.file === undefined && req.body.imagem === undefined) {
+            if (req.files === undefined && req.body.imagem === undefined) {
                 return res.status(422).send({ msg: "Imagem é obrigatória" })
             }
             try {
@@ -318,6 +319,9 @@ const productsController = {
             } catch (e) {
                 console.log(e)
             }
+
+            const imagens = req.files ? req.files.map(file => file.filename) : [req.body.imagem]
+            console.log(req.body);
 
             const product = await Product.create({
                 title: {
@@ -332,7 +336,7 @@ const productsController = {
                     description_es: req.body.description.description_es
                 },
                 category: category._id,
-                imagem: req.file ? req.file.filename : req.body.imagem,
+                imagem: imagens,
                 rating: {
                     rate: parseFloat(0),
                     count: parseInt(0),

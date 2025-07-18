@@ -55,7 +55,7 @@ const userController = {
                     return res.status(403).json({ msg: 'Usuário bloqueado. Entre em contato com o suporte.', success: false });
                 }
                 if (user.block === false) {
-                    fs.readFile(`C:/Users/augusdal/Desktop/Augusto/api - nodejs - mongoose - mongodb/Keys/${user.username}private.pem`, async function (erro, data) {
+                    fs.readFile(`${__dirname}/../Keys/${user.username}private.pem`, async function (erro, data) {
                         if (erro) {
                             return res.status(403).json({ msg: 'Dados inválidos', success: false });
                         }
@@ -152,7 +152,7 @@ const userController = {
 
             const keys = await criptoAssim(req.body.password1);
             const publicpass = await criptografando(req.body.password1, keys.publicKey)
-            fs.writeFile(`C:/Users/augusdal/Desktop/Augusto/api - nodejs - mongoose - mongodb/Keys/${req.body.username}private.pem`, keys.privateKey, function (erro) { if (erro) { throw erro } })
+            fs.writeFile(`${__dirname}/../Keys/${req.body.username}private.pem`, keys.privateKey, function (erro) { if (erro) { throw erro } })
 
             const newUser = new User({
                 username: req.body.username,

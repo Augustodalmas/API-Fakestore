@@ -40,5 +40,4 @@ app.use("/img", express.static("uploads"))
 const PORT = 3000
 app.listen(PORT, function () {
     console.log(`Servidor rodando na porta ${PORT}`)
-    console.log(listEndpoints(app));
 })

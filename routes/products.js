@@ -7,7 +7,7 @@ const { logged, roleRequired } = require('../Models/roleMiddleware');
 
 
 router.route("/products")
-    .post(logged, roleRequired(['gerente', 'admin', 'vendedor']), upload.single("imagem"), productsController.create);
+    .post(logged, roleRequired(['gerente', 'admin', 'vendedor']), upload.array("imagem", 5), productsController.create);
 
 router.route("/products/")
     .get((req, res) => productsController.getALL(req, res));
