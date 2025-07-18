@@ -13,7 +13,6 @@ package-lock.json
 .env.production.local
 
 # Chaves privadas e certificados
-Keys/
 *.pem
 *.key
 *.cert
