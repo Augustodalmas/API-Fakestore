@@ -41,13 +41,15 @@ const generatePDF = async (req, res) => {
             total: productCount[prod._id] * prod.price
         }));
 
-        const productsdata = products.map((prod, index) => ({
-            title: prod.title.title_pt,
-            count: productCount[prod._id],
-            total: priceTotalperProduct[index].total,
-            imagem: prod.imagem,
-            price: prod.price
-        }));
+
+        const productsdata = products.map((prod, index) => {
+            return {
+                title: prod.title.title_pt,
+                count: productCount[prod._id],
+                total: priceTotalperProduct[index].total,
+                price: prod.price
+            };
+        });
 
         const totalPrice = productsdata.reduce((sum, prod) => sum + prod.total, 0);
 
@@ -71,13 +73,17 @@ const generatePDF = async (req, res) => {
                 return res.status(500).json({ msg: "Erro ao renderizar o template, usuario sem endereço", error: err.message });
             }
 
+
             const options = {
                 type: 'pdf',
                 format: 'A4',
-                orientation: 'portrait'
+                orientation: 'portrait',
+                // Adicionar a opção base para resolver caminhos relativos
+                base: `file:///${process.cwd()}/`,
+                timeout: 30000
             };
 
-            pdf.create(html, options).toFile(`C:/Users/augusdal/Downloads/Nota-Fiscal-${cart._id}.pdf`, function (err, result) {
+            pdf.create(html, options).toFile(`C:/Users/augus/Downloads/Nota-Fiscal-${cart._id}.pdf`, function (err, result) {
 
                 if (err) {
                     return res.status(500).json({ msg: "Erro ao gerar PDF", error: err.message });

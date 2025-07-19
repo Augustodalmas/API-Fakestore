@@ -25,7 +25,7 @@ router.route("/products/:id")
     .delete(logged, roleRequired(['admin']), (req, res) => productsController.delete(req, res));
 
 router.route("/products/:id")
-    .put(logged, roleRequired(['vendedor', 'gerente', 'admin']), upload.single("imagem"), productsController.update);
+    .put(logged, roleRequired(['vendedor', 'gerente', 'admin']), upload.array("imagem", 5), productsController.update);
 
 router.route("/pagamento")
     .post((req, res) => productsController.buy(req, res));

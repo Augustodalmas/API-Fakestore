@@ -219,7 +219,6 @@
             <h3>Produtos:</h3>
             <table class="tableBody">
                 <thead>
-                    <th></th>
                     <th>Nome</th>
                     <th>Quantidade</th>
                     <th>Valor</th>
@@ -227,7 +226,6 @@
                 <tbody>
                     <% products.forEach(product=> { %>
                         <tr>
-                            <td><img src=<%=product.imagem %> alt="foto"></td>
                             <td class="title">
                                 <%= product.title %>
                             </td>

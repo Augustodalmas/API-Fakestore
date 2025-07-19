@@ -37,7 +37,7 @@ app.use('/', routes);
 // Static - servir as imagens
 app.use("/img", express.static("uploads"))
 
-const PORT = 3000
+const PORT = 5000
 app.listen(PORT, function () {
     console.log(`Servidor rodando na porta ${PORT}`)
 })

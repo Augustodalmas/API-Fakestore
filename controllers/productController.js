@@ -313,7 +313,6 @@ const productsController = {
                 const validation = validationUser.validate(req.body, { abortEarly: false, messages });
                 if (validation.error) {
                     const erros = validation.error.details.map(detail => detail.message)
-                    console.log(erros)
                     return res.status(422).send(erros)
                 }
             } catch (e) {
