@@ -31,7 +31,8 @@ Esta é uma API RESTful para uma loja fictícia, desenvolvida como parte de um t
 4. Inicie o servidor:
 
    ```bash
-   npm run dev
+   npm start
+
    ```
 
    O servidor estará disponível em `http://localhost:5000`.
